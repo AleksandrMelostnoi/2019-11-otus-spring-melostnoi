@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.Assert;
 import ru.otus.homework01.dao.QuizDao;
-import ru.otus.homework01.model.QuizRow;
+import ru.otus.homework01.exception.QuizDataFormatException;
+import ru.otus.homework01.model.Question;
 
 import java.util.List;
 
@@ -23,8 +24,8 @@ class QuizDaoTest {
     }
 
     @Test
-    void testGetQuestions() {
-        List<QuizRow> questions = dao.readQuizzes();
+    void testGetQuestions() throws QuizDataFormatException {
+        List<Question> questions = dao.readQuizzes();
         assertEquals(5, questions.size(), "Check questions number");
         questions.forEach(Assert::notNull);
     }

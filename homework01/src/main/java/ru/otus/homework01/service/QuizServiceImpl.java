@@ -1,50 +1,44 @@
 package ru.otus.homework01.service;
 
 import ru.otus.homework01.dao.QuizDao;
-import ru.otus.homework01.model.QuizRow;
+import ru.otus.homework01.exception.QuizDataFormatException;
+import ru.otus.homework01.model.Question;
 import ru.otus.homework01.model.Student;
+
 import java.util.List;
 
 import static ru.otus.homework01.util.Util.checkAnswer;
 import static ru.otus.homework01.util.Util.question2String;
 
-public class QuizServiceImpl implements QuizService {
+class QuizServiceImpl implements QuizService {
 
-    private Student student;
-    private InputConsoleService inputConsoleService;
-    private QuizDao quizDao;
+    private final Student student;
+    private final UIService uiService;
+    private final QuizDao quizDao;
 
-    QuizServiceImpl(InputConsoleService inputConsoleService, QuizDao quizDao) {
+    QuizServiceImpl(UIService uiService, QuizDao quizDao) {
         this.quizDao = quizDao;
-        this.inputConsoleService = inputConsoleService;
+        this.uiService = uiService;
         student = new Student();
     }
 
     @Override
-    public void startQuiz() {
-        List<QuizRow> quizRows = quizDao.readQuizzes();
-        readStudentName();
+    public void startQuiz() throws QuizDataFormatException {
+        uiService.readStudentName(student);
+        List<Question> questions = quizDao.readQuizzes();
         int correctAnswers = 0;
-        for (QuizRow quizRow : quizRows) {
-            System.out.println("\n" + question2String(quizRow));
-            Integer userAnswer = inputConsoleService.getUserAnswer(quizRow.getAnswerList().size());
+        for (int i = 0; i < questions.size(); i++) {
+            Question question = questions.get(i);
+            uiService.printQuestion(i + 1, question2String(question));
+            Integer userAnswer = uiService.getUserAnswer(question.getAnswerList().size());
             if (userAnswer <= 0) {
                 continue;
             }
-            if (checkAnswer(quizRow, userAnswer)) {
+            if (checkAnswer(question, userAnswer)) {
                 correctAnswers++;
             }
         }
-        System.out.println("Dear " + student.getFirstName() + " " + student.getLastName() + "!");
-        System.out.println("Number of correct answers: " + correctAnswers + " out of " + quizRows.size() + "\n");
-    }
-
-    @Override
-    public void readStudentName() {
-        System.out.println("Please input first name");
-        student.setFirstName(inputConsoleService.getName());
-        System.out.println("Please input last name");
-        student.setLastName(inputConsoleService.getName());
+        uiService.printResult(student, correctAnswers, questions.size());
     }
 
 }

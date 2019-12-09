@@ -1,11 +1,12 @@
 package ru.otus.homework01.dao;
 
-import ru.otus.homework01.model.QuizRow;
+import ru.otus.homework01.exception.QuizDataFormatException;
+import ru.otus.homework01.model.Question;
 
 import java.util.List;
 
 public interface QuizDao {
 
-    List<QuizRow> readQuizzes();
+    List<Question> readQuizzes() throws QuizDataFormatException;
 
 }
