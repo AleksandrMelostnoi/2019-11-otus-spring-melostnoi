@@ -2,22 +2,10 @@ package ru.otus.homework01.service;
 
 public interface IOService {
 
-    String inputFirstName();
+    String inputText();
 
-    String inputLastName();
+    int inputNumber();
 
-    void printEnterFirstName();
-
-    void printEnterLastName();
-
-    void printNumberInputWarningMessage(int number);
-
-    void printEnterAnswerNumberMessage();
-
-    int inputAnswerNumber();
-
-    void printQuestion(String questionText);
-
-    void printResult(String result);
+    void outputText(String text);
 
 }

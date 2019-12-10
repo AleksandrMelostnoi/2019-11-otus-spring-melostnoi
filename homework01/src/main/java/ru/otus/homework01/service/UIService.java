@@ -1,15 +1,16 @@
 package ru.otus.homework01.service;
 
 import ru.otus.homework01.model.Student;
+import ru.otus.homework01.model.TestingResult;
 
 public interface UIService {
 
-    Integer getUserAnswer(int maxAnswerNumber);
+    int getUserAnswer(int maxAnswerNumber);
 
-    void readStudentName(Student student);
+    Student readStudentInfo();
 
     void printQuestion(int questionNumber, String questionText);
 
-    void printResult(Student student, int correctAnswers, int size);
+    void printResult(TestingResult testingResult);
 
 }

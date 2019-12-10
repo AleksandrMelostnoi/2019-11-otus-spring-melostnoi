@@ -11,48 +11,18 @@ public class IOServiceImpl implements IOService {
     }
 
     @Override
-    public String inputFirstName() {
+    public String inputText() {
         return scanner.nextLine();
     }
 
     @Override
-    public String inputLastName() {
-        return scanner.nextLine();
-    }
-
-    @Override
-    public void printEnterFirstName() {
-        System.out.println("Please input first name");
-    }
-
-    @Override
-    public void printEnterLastName() {
-        System.out.println("Please input last name");
-    }
-
-    @Override
-    public void printNumberInputWarningMessage(int number) {
-        System.out.println("Only number less or equals " + number + "\n");
-    }
-
-    @Override
-    public void printEnterAnswerNumberMessage() {
-        System.out.println("Enter number of correct answer: ");
-    }
-
-    @Override
-    public int inputAnswerNumber() {
+    public int inputNumber() {
         return scanner.nextInt();
     }
 
     @Override
-    public void printQuestion(String questionText) {
-        System.out.println(questionText);
-    }
-
-    @Override
-    public void printResult(String resultText) {
-        System.out.println(resultText);
+    public void outputText(String text) {
+        System.out.println(text);
     }
 
 }
