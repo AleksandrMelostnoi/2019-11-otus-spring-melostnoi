@@ -46,7 +46,7 @@ public class QuizDaoImpl implements QuizDao {
             question.setQuestionText(columns[0]);
             List<Answer> answerList = new ArrayList<>();
             for (int i = 1; i < columns.length; i++) {
-                answerList.add(new Answer((i + 1) / 2, columns[i], Boolean.valueOf(columns[i + 1])));
+                answerList.add(new Answer((i + 1) / 2, columns[i], Boolean.parseBoolean(columns[i + 1])));
                 i++;
             }
             question.setAnswerList(answerList);

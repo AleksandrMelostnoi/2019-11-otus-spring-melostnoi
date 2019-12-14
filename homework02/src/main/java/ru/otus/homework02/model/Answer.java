@@ -9,6 +9,6 @@ public class Answer {
 
     private int id;
     private String answerText;
-    private Boolean type;
+    private boolean type;
 
 }

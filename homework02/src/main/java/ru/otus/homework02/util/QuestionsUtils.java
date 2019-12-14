@@ -3,10 +3,10 @@ package ru.otus.homework02.util;
 import ru.otus.homework02.model.Answer;
 import ru.otus.homework02.model.Question;
 
-public class Util {
+public class QuestionsUtils {
 
     public static boolean checkAnswer(Question question, Integer userAnswer) {
-        return question.getAnswerList().get(userAnswer - 1).getType();
+        return question.getAnswerList().get(userAnswer - 1).isType();
     }
 
     public static String question2String(Question question) {

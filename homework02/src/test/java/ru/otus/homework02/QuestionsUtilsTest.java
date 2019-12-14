@@ -14,11 +14,11 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static ru.otus.homework02.util.Util.checkAnswer;
-import static ru.otus.homework02.util.Util.question2String;
+import static ru.otus.homework02.util.QuestionsUtils.checkAnswer;
+import static ru.otus.homework02.util.QuestionsUtils.question2String;
 
 @DisplayName("Tests for utils")
-class UtilTest {
+class QuestionsUtilsTest {
 
     private static HashMap<String, String> suitableLanguageAnswer;
 

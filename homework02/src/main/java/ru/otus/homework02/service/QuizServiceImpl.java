@@ -8,8 +8,8 @@ import ru.otus.homework02.model.TestingResult;
 
 import java.util.List;
 
-import static ru.otus.homework02.util.Util.checkAnswer;
-import static ru.otus.homework02.util.Util.question2String;
+import static ru.otus.homework02.util.QuestionsUtils.checkAnswer;
+import static ru.otus.homework02.util.QuestionsUtils.question2String;
 
 public class QuizServiceImpl implements QuizService {
 
