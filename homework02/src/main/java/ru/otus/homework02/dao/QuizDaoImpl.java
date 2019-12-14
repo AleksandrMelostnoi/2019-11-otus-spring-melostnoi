@@ -22,17 +22,17 @@ public class QuizDaoImpl implements QuizDao {
     }
 
     @Override
-    public List<Question> readQuizzes() throws QuizDataFormatException {
+    public List<Question> readQuizzes(String exceptionMessage) throws QuizDataFormatException {
         List<String> rows = null;
         try {
             rows = Files.readAllLines(Paths.get(Objects.requireNonNull(App.class.getClassLoader().getResource(path)).toURI()));
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
-        return parseQARows(rows);
+        return parseQARows(rows, exceptionMessage);
     }
 
-    private List<Question> parseQARows(List<String> rows) throws QuizDataFormatException {
+    private List<Question> parseQARows(List<String> rows, String exceptionMessage) throws QuizDataFormatException {
         List<Question> quizRows = new ArrayList<>();
         if (null == rows) {
             return quizRows;
@@ -40,7 +40,7 @@ public class QuizDaoImpl implements QuizDao {
         for (String row : rows) {
             String[] columns = row.split(";");
             if (columns.length <= 1) {
-                throw new QuizDataFormatException();
+                throw new QuizDataFormatException(exceptionMessage);
             }
             Question question = new Question();
             question.setQuestionText(columns[0]);

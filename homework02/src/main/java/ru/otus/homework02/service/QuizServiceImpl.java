@@ -24,7 +24,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void startQuiz() throws QuizDataFormatException {
         Student student = uiService.readStudentInfo();
-        List<Question> questions = quizDao.readQuizzes();
+        List<Question> questions = quizDao.readQuizzes(uiService.getMessage("exception.message"));
         int correctAnswers = 0;
         for (int i = 0; i < questions.size(); i++) {
             Question question = questions.get(i);

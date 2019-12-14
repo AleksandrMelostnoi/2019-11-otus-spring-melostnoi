@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class IOServiceImpl implements IOService {
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public IOServiceImpl() {
         this.scanner = new Scanner(System.in);

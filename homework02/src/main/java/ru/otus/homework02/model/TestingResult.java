@@ -11,9 +11,8 @@ public class TestingResult {
     private int numberOfCorrectAnswers;
     private int questionsNumber;
 
-    public String convertTestData2String() {
-        return "Dear " + student.getFirstName() + " " + student.getLastName() + "!" + "\n" +
-                "Number of correct answers: " + numberOfCorrectAnswers + " out of " + questionsNumber + "\n";
+    public String getFullName() {
+        return student.getFirstName() + " " + student.getLastName();
     }
 
 }
