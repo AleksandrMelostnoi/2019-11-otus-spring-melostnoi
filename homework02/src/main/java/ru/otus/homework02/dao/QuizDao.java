@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface QuizDao {
 
-    List<Question> readQuizzes(String exceptionMessage) throws QuizDataFormatException;
+    List<Question> readQuizzes() throws QuizDataFormatException;
 
 }

@@ -33,7 +33,7 @@ class QuestionsUtilsTest {
     @ValueSource(strings = {"en", "ru"})
     void testQuestion2String(String language) throws QuizDataFormatException {
         QuizDao dao = new QuizDaoImpl(String.format("questions_%s.csv", language));
-        Question question = dao.readQuizzes("").get(0);
+        Question question = dao.readQuizzes().get(0);
         assertEquals(suitableLanguageAnswer.get(language), question2String(question));
         assertTrue(checkAnswer(question, 4));
         assertFalse(checkAnswer(question, 1));

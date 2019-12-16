@@ -13,5 +13,4 @@ public interface UIService {
 
     void printResult(TestingResult testingResult);
 
-    String getMessage(String source);
 }

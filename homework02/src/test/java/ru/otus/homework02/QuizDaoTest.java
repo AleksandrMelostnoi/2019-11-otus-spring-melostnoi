@@ -26,7 +26,7 @@ class QuizDaoTest {
 
     @Test
     void testGetQuestions() throws QuizDataFormatException {
-        List<Question> questions = dao.readQuizzes("");
+        List<Question> questions = dao.readQuizzes();
         assertEquals(5, questions.size(), "Check questions number");
         questions.forEach(Assert::notNull);
     }

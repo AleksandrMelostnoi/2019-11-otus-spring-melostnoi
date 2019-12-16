@@ -6,7 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import ru.otus.homework02.dao.QuizDao;
 import ru.otus.homework02.dao.QuizDaoImpl;
-import ru.otus.homework02.service.*;
+import ru.otus.homework02.service.IOService;
+import ru.otus.homework02.service.IOServiceImpl;
+import ru.otus.homework02.service.LocalizationService;
+import ru.otus.homework02.service.LocalizationServiceImpl;
+import ru.otus.homework02.service.QuizService;
+import ru.otus.homework02.service.QuizServiceImpl;
+import ru.otus.homework02.service.UIService;
+import ru.otus.homework02.service.UIServiceImpl;
 
 import java.util.Locale;
 
@@ -24,11 +31,16 @@ public class AppConfig {
     }
 
     @Bean
-    UIService uiService(@Value("${language}") String language, IOService ioService) {
+    LocalizationService localizationService(@Value("${language}") String language, @Value("${country}") String country, IOService ioService) {
         ReloadableResourceBundleMessageSource messageSources = new ReloadableResourceBundleMessageSource();
         messageSources.setBasename("bundle");
-        messageSources.setDefaultEncoding("CP1251");
-        return new UIServiceImpl(Locale.forLanguageTag(language), ioService, messageSources);
+        messageSources.setDefaultEncoding("UTF-8");
+        return new LocalizationServiceImpl(Locale.forLanguageTag(language + "-" + country), ioService, messageSources);
+    }
+
+    @Bean
+    UIService uiService(LocalizationService localizationService, IOService ioService) {
+        return new UIServiceImpl(localizationService, ioService);
     }
 
     @Bean
