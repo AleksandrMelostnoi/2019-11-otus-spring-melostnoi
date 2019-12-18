@@ -6,6 +6,6 @@ public interface IOService {
 
     int inputNumber();
 
-    void outputText(String text);
+    String outputText(String text);
 
 }

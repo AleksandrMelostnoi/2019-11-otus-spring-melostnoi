@@ -24,8 +24,9 @@ public class IOServiceImpl implements IOService {
     }
 
     @Override
-    public void outputText(String text) {
+    public String outputText(String text) {
         System.out.println(text);
+        return text;
     }
 
 }

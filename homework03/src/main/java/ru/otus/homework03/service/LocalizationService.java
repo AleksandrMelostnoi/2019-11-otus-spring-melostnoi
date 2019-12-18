@@ -2,7 +2,7 @@ package ru.otus.homework03.service;
 
 public interface LocalizationService {
 
-    void outputTextForEnterCorrectAnswer();
+    String outputTextForEnterCorrectAnswer();
 
     void outputTextForRangeWarningMessage(int maxAnswerNumber);
 
