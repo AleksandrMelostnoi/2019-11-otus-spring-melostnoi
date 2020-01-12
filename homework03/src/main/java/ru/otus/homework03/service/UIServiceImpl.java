@@ -22,16 +22,16 @@ public class UIServiceImpl implements UIService {
 
     @Override
     public int getUserAnswer(int maxAnswerNumber) {
-        localizationService.outputTextForEnterCorrectAnswer();
+        localizationService.outputLocalizedMsgForEnterCorrectAnswer();
         int answerNumber;
         try {
             answerNumber = ioService.inputNumber();
             if (1 > answerNumber || answerNumber > maxAnswerNumber) {
-                localizationService.outputTextForRangeWarningMessage(maxAnswerNumber);
+                localizationService.outputLocalizedMsgForRangeWarningMessage(maxAnswerNumber);
                 return 0;
             }
         } catch (InputMismatchException e) {
-            localizationService.outputTextForExceptionErrorMessage(maxAnswerNumber);
+            localizationService.outputLocalizedMsgForExceptionErrorMessage(maxAnswerNumber);
             return 0;
         }
         return answerNumber;
@@ -40,9 +40,9 @@ public class UIServiceImpl implements UIService {
     @Override
     public Student readStudentInfo() {
         Student student = new Student();
-        localizationService.outputTextForEnterFirstName();
+        localizationService.outputLocalizedMsgForEnterFirstName();
         student.setFirstName(ioService.inputText());
-        localizationService.outputTextForEnterLastName();
+        localizationService.outputLocalizedMsgForEnterLastName();
         student.setLastName(ioService.inputText());
         return student;
     }
@@ -54,7 +54,7 @@ public class UIServiceImpl implements UIService {
 
     @Override
     public void printResult(TestingResult testingResult) {
-        localizationService.outputTextForResultMessage(testingResult.getFullName(), testingResult.getNumberOfCorrectAnswers(),
+        localizationService.outputLocalizedMsgForResultMessage(testingResult.getFullName(), testingResult.getNumberOfCorrectAnswers(),
                 testingResult.getQuestionsNumber());
     }
 

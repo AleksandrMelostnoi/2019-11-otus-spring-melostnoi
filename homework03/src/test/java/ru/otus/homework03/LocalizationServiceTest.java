@@ -1,30 +1,22 @@
 package ru.otus.homework03;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import ru.otus.homework03.service.LocalizationServiceImpl;
-
-import java.util.Locale;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import ru.otus.homework03.service.MessageWrapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class LocalizationServiceTest {
 
-    @Autowired
-    private LocalizationServiceImpl localizationService;
-
     @Test
-    void englishLocalizationServiceTest() {
-        localizationService.setLocale(Locale.forLanguageTag("en-EN"));
-        assertEquals("Enter number of correct answer: ", localizationService.outputTextForEnterCorrectAnswer());
-    }
-
-    @Test
-    void russianLocalizationServiceTest() {
-        localizationService.setLocale(Locale.forLanguageTag("ru-RU"));
-        assertEquals("Введите номер правильного ответа: ", localizationService.outputTextForEnterCorrectAnswer());
+    void getMessageTest(@Mock MessageWrapper messageWrapper) {
+        Mockito.when(messageWrapper.getMessage("enter.first.name")).thenReturn("Please input first name");
+        assertEquals("Please input first name", messageWrapper.getMessage("enter.first.name"));
+        Mockito.verify(messageWrapper).getMessage("enter.first.name");
     }
 
 }

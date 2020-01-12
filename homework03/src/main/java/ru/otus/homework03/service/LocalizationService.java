@@ -2,16 +2,16 @@ package ru.otus.homework03.service;
 
 public interface LocalizationService {
 
-    String outputTextForEnterCorrectAnswer();
+    String outputLocalizedMsgForEnterCorrectAnswer();
 
-    void outputTextForRangeWarningMessage(int maxAnswerNumber);
+    void outputLocalizedMsgForRangeWarningMessage(int maxAnswerNumber);
 
-    void outputTextForExceptionErrorMessage(int maxAnswerNumber);
+    void outputLocalizedMsgForExceptionErrorMessage(int maxAnswerNumber);
 
-    void outputTextForEnterFirstName();
+    void outputLocalizedMsgForEnterFirstName();
 
-    void outputTextForEnterLastName();
+    void outputLocalizedMsgForEnterLastName();
 
-    void outputTextForResultMessage(String studentFullName, int correctAnswers, int questionsNumber);
+    void outputLocalizedMsgForResultMessage(String studentFullName, int correctAnswers, int questionsNumber);
 
 }

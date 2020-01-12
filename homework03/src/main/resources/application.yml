@@ -2,3 +2,7 @@ application:
   csv-path: questions_%s.csv
   language: ru
   country: RU
+
+spring:
+  messages:
+    basename: bundle

@@ -1,4 +1,4 @@
 application:
   csv-path: questions_%s.csv
-  language: ru
-  country: RU
+  language: en
+  country: EN

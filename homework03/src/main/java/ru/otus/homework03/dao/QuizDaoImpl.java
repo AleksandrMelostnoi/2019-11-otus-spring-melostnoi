@@ -2,7 +2,7 @@ package ru.otus.homework03.dao;
 
 import org.springframework.stereotype.Component;
 import ru.otus.homework03.Application;
-import ru.otus.homework03.config.AppProperties;
+import ru.otus.homework03.config.LocaleConfig;
 import ru.otus.homework03.exception.QuizDataFormatException;
 import ru.otus.homework03.model.Answer;
 import ru.otus.homework03.model.Question;
@@ -20,8 +20,8 @@ public class QuizDaoImpl implements QuizDao {
 
     private final String path;
 
-    public QuizDaoImpl(AppProperties appProperties) {
-        this.path = String.format(appProperties.getCsvPath(), appProperties.getLanguage());
+    public QuizDaoImpl(LocaleConfig localeConfig) {
+        this.path = String.format(localeConfig.getCsvPath(), localeConfig.getLanguage());
     }
 
     @Override
