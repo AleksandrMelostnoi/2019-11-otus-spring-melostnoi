@@ -9,37 +9,37 @@ import org.springframework.stereotype.Service;
 public class LocalizationServiceImpl implements LocalizationService {
 
     private final IOService ioService;
-    private MessageWrapper messageWrapper;
+    private MessageSourceWrapper messageSourceWrapper;
 
     @Autowired
-    LocalizationServiceImpl(IOService ioService, MessageWrapper messageWrapper) {
+    LocalizationServiceImpl(IOService ioService, MessageSourceWrapper messageSourceWrapper) {
         this.ioService = ioService;
-        this.messageWrapper = messageWrapper;
+        this.messageSourceWrapper = messageSourceWrapper;
     }
 
     public String outputLocalizedMsgForEnterCorrectAnswer() {
-        return ioService.outputText(messageWrapper.getMessage("enter.correct.answer") + " ");
+        return ioService.outputText(messageSourceWrapper.getMessage("enter.correct.answer") + " ");
     }
 
     public void outputLocalizedMsgForRangeWarningMessage(int maxAnswerNumber) {
-        ioService.outputText(messageWrapper.getMessage("range.warning.message") + " " + maxAnswerNumber + "\n");
+        ioService.outputText(messageSourceWrapper.getMessage("range.warning.message") + " " + maxAnswerNumber);
     }
 
     public void outputLocalizedMsgForExceptionErrorMessage(int maxAnswerNumber) {
-        ioService.outputText(messageWrapper.getMessage("exception.error.message") + " " + maxAnswerNumber + "\n");
+        ioService.outputText(messageSourceWrapper.getMessage("exception.error.message") + " " + maxAnswerNumber);
     }
 
     public void outputLocalizedMsgForEnterFirstName() {
-        ioService.outputText(messageWrapper.getMessage("enter.first.name"));
+        ioService.outputText(messageSourceWrapper.getMessage("enter.first.name"));
     }
 
     public void outputLocalizedMsgForEnterLastName() {
-        ioService.outputText(messageWrapper.getMessage("enter.last.name"));
+        ioService.outputText(messageSourceWrapper.getMessage("enter.last.name"));
     }
 
     public void outputLocalizedMsgForResultMessage(String studentFullMessage, int correctAnswers, int questionsNumber) {
-        String resultMessage = messageWrapper.getMessage("correct.answers.number") + " " + correctAnswers + " " +
-                messageWrapper.getMessage("out.of") + " " + questionsNumber + "\n";
+        String resultMessage = messageSourceWrapper.getMessage("correct.answers.number") + " " + correctAnswers + " " +
+                messageSourceWrapper.getMessage("out.of") + " " + questionsNumber + "\n";
         ioService.outputText(studentFullMessage + "!" + "\n" + resultMessage);
     }
 

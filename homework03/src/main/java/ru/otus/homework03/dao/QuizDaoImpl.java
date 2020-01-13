@@ -21,7 +21,7 @@ public class QuizDaoImpl implements QuizDao {
     private final String path;
 
     public QuizDaoImpl(LocaleConfig localeConfig) {
-        this.path = String.format(localeConfig.getCsvPath(), localeConfig.getLanguage());
+        this.path = String.format(localeConfig.getCsvPath(), localeConfig.getLocale().getLanguage());
     }
 
     @Override

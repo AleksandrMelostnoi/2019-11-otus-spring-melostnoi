@@ -1,6 +1,6 @@
 package ru.otus.homework03.service;
 
-public interface MessageWrapper {
+public interface MessageSourceWrapper {
 
     String getMessage(String source);
 

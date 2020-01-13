@@ -7,7 +7,7 @@ import ru.otus.homework03.config.LocaleConfig;
 
 @Service
 @AllArgsConstructor
-public class MessageWrapperImpl implements MessageWrapper {
+public class MessageSourceWrapperImpl implements MessageSourceWrapper {
 
     private final MessageSource messageSource;
     private final LocaleConfig localeConfig;

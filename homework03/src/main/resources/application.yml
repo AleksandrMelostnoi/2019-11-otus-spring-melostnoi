@@ -1,7 +1,6 @@
 application:
   csv-path: questions_%s.csv
-  language: ru
-  country: RU
+  locale: ru-RU
 
 spring:
   messages:
