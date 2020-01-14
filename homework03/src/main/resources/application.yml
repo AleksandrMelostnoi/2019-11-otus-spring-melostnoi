@@ -1,0 +1,7 @@
+application:
+  csv-path: questions_%s.csv
+  locale: ru-RU
+
+spring:
+  messages:
+    basename: bundle
