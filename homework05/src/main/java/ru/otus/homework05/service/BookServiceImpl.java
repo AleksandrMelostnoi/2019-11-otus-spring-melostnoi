@@ -1,49 +1,61 @@
 package ru.otus.homework05.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ru.otus.homework05.Exception.BookAlreadyExistsException;
+import ru.otus.homework05.Exception.EmptyFieldException;
+import ru.otus.homework05.dao.BookDao;
 import ru.otus.homework05.model.Book;
 
 import java.util.List;
 
+@Service
 public class BookServiceImpl implements BookService {
+    final private IOService ioService;
+    final private BookDao bookDao;
+    final private GenreService genreService;
+    final private AuthorService authorService;
 
+    @Autowired
+    public BookServiceImpl(IOService ioService, BookDao bookDao, GenreService genreService, AuthorService authorService) {
+        this.ioService = ioService;
+        this.bookDao = bookDao;
+        this.genreService = genreService;
+        this.authorService = authorService;
+    }
+
+    public List<Book> getAll() {
+        return bookDao.getAll();
+    }
 
     @Override
-    public List<Book> getBooks() {
-        return null;
+    public long getCount() {
+        return bookDao.getCount();
+    }
+
+    @Override
+    public void insert(Book book) throws BookAlreadyExistsException, EmptyFieldException {
+        bookDao.insert(book);
     }
 
     @Override
     public Book getById(long id) {
-        return null;
+        return bookDao.getById(id);
     }
 
     @Override
-    public void insertOrUpdate(Book book) {
-
+    public void deleteById(long id) {
+        bookDao.deleteById(id);
     }
 
     @Override
-    public List<Book> findBook(String name) {
-        return null;
-    }
-
-    @Override
-    public List<Book> findByAuthorName(String authorName) {
-        return null;
-    }
-
-    @Override
-    public List<Book> findByGenreName(String genreName) {
-        return null;
-    }
-
-    @Override
-    public void insert(String name, String authorName, String genreName) {
-
-    }
-
-    @Override
-    public void delete(long id) {
-
+    public Book getNewBook() {
+        ioService.write("Введите название книги");
+        String title = ioService.read();
+        ioService.write("Введите автора");
+        String authorName = ioService.read();
+        ioService.write("Введите жанр");
+        String genreName = ioService.read();
+        return new Book(title, genreService.getGenre(genreName), authorService.getAuthor(authorName));
     }
 }

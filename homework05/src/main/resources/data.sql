@@ -1,0 +1,17 @@
+INSERT INTO genre (id,name) VALUES (1,'Сказка')
+INSERT INTO genre (id,name) VALUES (2,'Комедия')
+INSERT INTO genre (id,name) VALUES (3,'Детектив')
+INSERT INTO genre (id,name) VALUES (4,'Роман')
+INSERT INTO genre (id,name) VALUES (5,'Фантастика')
+
+INSERT INTO author (id,name) VALUES (1,'Рэй Брэдбери')
+INSERT INTO author (id,name) VALUES (2,'Шекспир')
+INSERT INTO author (id,name) VALUES (3,'Толстой')
+INSERT INTO author (id,name) VALUES (4,'Конан Дойл')
+INSERT INTO author (id,name) VALUES (5,'Стивен Кинг')
+
+INSERT INTO book (id,title,genreId,authorId) VALUES (1,'Из праха восставшие',1,1)
+INSERT INTO book (id,title,genreId,authorId) VALUES (2,'Укрощение строптивой',2,2)
+INSERT INTO book (id,title,genreId,authorId) VALUES (3,'Война и мир',4,3)
+INSERT INTO book (id,title,genreId,authorId) VALUES (4,'Шерлок Холмс',3,4)
+INSERT INTO book (id,title,genreId,authorId) VALUES (5,'Институт',5,5)

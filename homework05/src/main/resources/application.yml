@@ -1,7 +1,10 @@
-spring:
+Spring:
   datasource:
-    initialization-mode: never
-    platform: postgres
-    url: jdbc:postgresql://45.67.229.233:5432/library05
-    username: postgres
-    password: Mo$cow2019
+    schema: schema.sql
+    data: data.sql
+    initialization-mode: always
+    platform: h2
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
