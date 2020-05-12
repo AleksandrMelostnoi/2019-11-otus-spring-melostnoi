@@ -1,7 +1,6 @@
 package ru.otus.homework06.dao;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.otus.homework06.entity.Author;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.Optional;
 
-@Transactional
 @Repository
 public class AuthorDaoImpl implements AuthorDao {
 
@@ -28,15 +26,8 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public Optional<Author> getById(long id) {
-        return Optional.ofNullable(em.find(Author.class, id));
-    }
-
-    @Override
-    public boolean checkByName(String name) {
-        TypedQuery<Author> query = em.createQuery("select a from Author a where a.name = :name", Author.class);
-        query.setParameter("name", name);
-        return query.getResultList().size() != 0;
+    public Author getById(long id) {
+        return em.find(Author.class, id);
     }
 
     @Override

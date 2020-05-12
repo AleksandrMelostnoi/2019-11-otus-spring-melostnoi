@@ -13,5 +13,6 @@ public interface BookService {
     long getCount();
     void deleteById(long id);
     Book getNewBook();
+    List<Book> findByAuthorName(String name);
 
 }

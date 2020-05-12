@@ -14,7 +14,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author getById(long id) {
-        return authorDao.getById(id).get();
+        return authorDao.getById(id);
     }
 
     @Override
@@ -26,6 +26,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     private boolean checkAuthorInBase(String authorName){
-        return authorDao.checkByName(authorName);
+        return authorDao.getByName(authorName).isPresent();
     }
+
 }

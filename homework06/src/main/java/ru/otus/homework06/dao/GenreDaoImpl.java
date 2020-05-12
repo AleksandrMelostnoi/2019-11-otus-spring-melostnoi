@@ -1,7 +1,6 @@
 package ru.otus.homework06.dao;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.otus.homework06.entity.Genre;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.Optional;
 
-@Transactional
 @Repository
 public class GenreDaoImpl implements GenreDao {
 
