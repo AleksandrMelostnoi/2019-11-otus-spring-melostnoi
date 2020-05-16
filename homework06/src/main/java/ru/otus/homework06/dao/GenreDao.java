@@ -9,6 +9,5 @@ public interface GenreDao {
     Genre insert(Genre genre);
     Optional<Genre> getById(long id);
     Optional<Genre> getByName(String genreName);
-    boolean checkByName(String genreName);
 
 }

@@ -49,5 +49,4 @@ class AuthorDaoJpaTest {
         assertEquals(author, authorFromDb);
     }
 
-
 }

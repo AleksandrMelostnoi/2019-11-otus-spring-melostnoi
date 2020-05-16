@@ -17,7 +17,7 @@ public class GenreDaoImpl implements GenreDao {
 
     @Override
     public Genre insert(Genre genre) {
-        if (genre.getId() <= 0) {
+        if (genre.getId() == null) {
             em.persist(genre);
             return genre;
         } else {
@@ -28,11 +28,6 @@ public class GenreDaoImpl implements GenreDao {
     @Override
     public Optional<Genre> getById(long id) {
         return Optional.ofNullable(em.find(Genre.class, id));
-    }
-
-    @Override
-    public boolean checkByName(String name) {
-        return getByName(name).isPresent();
     }
 
     @Override

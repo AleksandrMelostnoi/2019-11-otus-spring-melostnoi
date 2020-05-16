@@ -20,7 +20,7 @@ import java.util.Objects;
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "name", unique = true)
     private String name;
@@ -41,6 +41,11 @@ public class Genre {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
 }

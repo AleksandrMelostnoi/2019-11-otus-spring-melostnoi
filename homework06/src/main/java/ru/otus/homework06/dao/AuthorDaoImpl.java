@@ -17,7 +17,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public Author insert(Author author) {
-        if (author.getId() <= 0) {
+        if (author.getId() == null) {
             em.persist(author);
             return author;
         } else {

@@ -19,13 +19,10 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre getGenre(String genreName) {
-        if (!checkGenreInBase(genreName)) {
+        if (!genreDao.getByName(genreName).isPresent()) {
             genreDao.insert(new Genre(genreName));
         }
         return genreDao.getByName(genreName).get();
     }
 
-    private boolean checkGenreInBase(String genreName) {
-        return genreDao.checkByName(genreName);
-    }
 }

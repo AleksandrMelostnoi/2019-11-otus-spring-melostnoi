@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.otus.homework06.Exception.EmptyFieldException;
 import ru.otus.homework06.dao.BookDao;
+import ru.otus.homework06.entity.Author;
 import ru.otus.homework06.entity.Book;
+import ru.otus.homework06.entity.Genre;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static ru.otus.homework06.util.Util.validateEmptyField;
+import java.util.Set;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -36,10 +38,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void insert(Book book) throws EmptyFieldException {
-        if (!validateEmptyField(book).isEmpty()){
-            throw new EmptyFieldException(" Ошибка! У книги отсутствует поле " + validateEmptyField(book));
-        }
+    public void insert(Book book)  {
         bookDao.insert(book);
     }
 
@@ -54,21 +53,28 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book getNewBook() {
+    public Book getNewBook() throws EmptyFieldException {
         ioService.write("Введите название книги");
         String title = ioService.read();
-        ioService.write("Введите автора");
-        String authorName = ioService.read();
-        ioService.write("Введите жанр");
-        String genreName = ioService.read();
-        return new Book(title, genreService.getGenre(genreName), authorService.getAuthor(authorName));
+        ioService.write("Введите автора (авторов - через запятую)");
+        List<String> authorNames = Arrays.asList(ioService.read().split(","));
+        ioService.write("Введите жанр (жанры - через запятую");
+        List<String> genreNames = Arrays.asList(ioService.read().split(","));
+
+        HashSet<Author> authors = new HashSet<>();
+        authorNames.forEach(name -> authors.add(authorService.getAuthor(name.trim())));
+        HashSet<Genre> genres = new HashSet<>();
+        genreNames.forEach(name -> genres.add(genreService.getGenre(name.trim())));
+        return Book.builder()
+                .title(title)
+                .authors(authors)
+                .genres(genres)
+                .build();
     }
 
     @Override
-    public List<Book> findByAuthorName(String name) {
-        return getAll().stream()
-                .filter(book -> book.getAuthor().getName().equalsIgnoreCase(name))
-                .collect(Collectors.toList());
+    public Set<Book> findByAuthorName(String name) {
+        return authorService.getAuthor(name).getBooks();
     }
 
 }

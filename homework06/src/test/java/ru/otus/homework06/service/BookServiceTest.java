@@ -17,6 +17,8 @@ import ru.otus.homework06.entity.Author;
 import ru.otus.homework06.entity.Book;
 import ru.otus.homework06.entity.Genre;
 
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -32,6 +34,7 @@ public class BookServiceTest {
 
     private static final Long GENRE_ID = 2L;
     private static final Long AUTHOR_ID = 2L;
+    private static final Long BOOK_ID = 2L;
 
     private static final String BOOK_NAME = "Tom Sawyer";
     private static final String AUTHOR_NAME = "Mark Twain";
@@ -52,18 +55,21 @@ public class BookServiceTest {
     @Test
     @DisplayName("add book with book service Test")
     void shouldCorrectInsertBook() throws EmptyFieldException {
-        Author author = new Author(AUTHOR_ID, AUTHOR_NAME);
-        Mockito.when(authorService.getAuthor(anyString())).thenReturn(author);
-        Genre genre = new Genre(GENRE_ID, GENRE_NAME);
-        Mockito.when(genreService.getGenre(any())).thenReturn(genre);
-        Book book = new Book(BOOK_NAME, genreService.getGenre(GENRE_NAME), authorService.getAuthor(AUTHOR_NAME));
-        bookService.insert(book);
+        Mockito.when(authorService.getAuthor(anyString())).thenReturn(new Author(AUTHOR_ID, AUTHOR_NAME));
+        Mockito.when(genreService.getGenre(any())).thenReturn(new Genre(GENRE_ID, GENRE_NAME));
+
+        HashSet<Author> authors = new HashSet<>();
+        authors.add(authorService.getAuthor(AUTHOR_NAME));
+        HashSet<Genre> genres = new HashSet<>();
+        genres.add(genreService.getGenre(GENRE_NAME));
+
+        bookService.insert(new Book(BOOK_ID, BOOK_NAME, authors, genres));
 
         ArgumentCaptor<Book> argument = ArgumentCaptor.forClass(Book.class);
         verify(bookDao, Mockito.times(1)).insert(argument.capture());
         assertEquals(BOOK_NAME, argument.getValue().getTitle());
-        assertEquals(AUTHOR_ID, argument.getValue().getAuthor().getId());
-        assertEquals(GENRE_ID, argument.getValue().getGenre().getId());
+        assertEquals(AUTHOR_ID, argument.getValue().getAuthors().stream().findFirst().get().getId());
+        assertEquals(GENRE_ID, argument.getValue().getGenres().stream().findFirst().get().getId());
     }
 
 }

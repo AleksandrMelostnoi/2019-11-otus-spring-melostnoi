@@ -4,7 +4,7 @@ import ru.otus.homework06.entity.Author;
 
 public interface AuthorService {
 
-    Author getById(long id);
-    Author getAuthor(String genreName);
+    Author getById(Long id);
+    Author getAuthor(String authorName);
 
 }

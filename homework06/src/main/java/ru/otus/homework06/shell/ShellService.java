@@ -5,11 +5,8 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.homework06.Exception.EmptyFieldException;
-import ru.otus.homework06.entity.Book;
 import ru.otus.homework06.service.BookService;
 import ru.otus.homework06.service.IOService;
-
-import java.util.List;
 
 @ShellComponent
 public class ShellService {
@@ -30,13 +27,12 @@ public class ShellService {
 
     @ShellMethod(key = {"get_id"}, value = "get book by Id")
     public void getBookById() {
-        ioService.write(bookService.getById(ioService.readInt()).toString());
+        ioService.write(bookService.getById(ioService.readInt()));
     }
 
     @ShellMethod(key = {"all"}, value = "show all books")
     public void allBooks() {
-        List<Book> allBooks = bookService.getAll();
-        allBooks.forEach(book -> ioService.write(book.toString()));
+        bookService.getAll().forEach(ioService::write);
     }
 
     @ShellMethod(key = "count", value = "count of all books")
@@ -51,13 +47,8 @@ public class ShellService {
     }
 
     @ShellMethod(key = {"get_a"}, value = "get books by Author")
-    public void getBooksByAuthor() {
-        ioService.write("Введите автора");
-        List<Book> booksByAuthorName = bookService.findByAuthorName(ioService.read());
-        if (booksByAuthorName.isEmpty()) {
-            ioService.write("Books not found");
-        }
-        booksByAuthorName.forEach(book -> ioService.write(book.toString()));
+    public void getBooksByAuthor() throws EmptyFieldException {
+        bookService.findByAuthorName(ioService.read()).forEach(ioService::write);
     }
 
 }

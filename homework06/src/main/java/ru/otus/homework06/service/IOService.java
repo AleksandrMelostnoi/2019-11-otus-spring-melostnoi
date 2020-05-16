@@ -1,10 +1,12 @@
 package ru.otus.homework06.service;
 
+import ru.otus.homework06.Exception.EmptyFieldException;
+
 public interface IOService {
 
-    String read();
+    String read() throws EmptyFieldException;
     Integer readInt();
     void write(long count);
-    void write(String text);
+    void write(Object obj);
 
 }
