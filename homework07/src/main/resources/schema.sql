@@ -1,0 +1,33 @@
+DROP TABLE IF EXISTS books;
+CREATE TABLE books (
+    id      BIGINT NOT NULL PRIMARY KEY  AUTO_INCREMENT,
+    title   VARCHAR(255)
+);
+
+DROP TABLE IF EXISTS authors;
+CREATE TABLE authors (
+    id   BIGINT PRIMARY KEY  AUTO_INCREMENT,
+    name  VARCHAR(255) NOT NULL  UNIQUE
+);
+
+DROP TABLE IF EXISTS genres;
+CREATE TABLE genres (
+    id   BIGINT PRIMARY KEY  AUTO_INCREMENT,
+    name  VARCHAR(255) NOT NULL  UNIQUE
+);
+
+DROP TABLE IF EXISTS books_authors;
+CREATE TABLE books_authors (
+    book_id BIGINT  NOT NULL,
+    author_id BIGINT  NOT NULL,
+    FOREIGN KEY(book_id) REFERENCES books(id) ON DELETE CASCADE,
+    FOREIGN KEY(author_id) REFERENCES authors(id) ON DELETE CASCADE
+);
+
+DROP TABLE IF EXISTS books_genres;
+CREATE TABLE books_genres (
+    book_id BIGINT  NOT NULL,
+    genre_id BIGINT  NOT NULL,
+    FOREIGN KEY(book_id) REFERENCES books(id) ON DELETE CASCADE,
+    FOREIGN KEY(genre_id) REFERENCES genres(id) ON DELETE CASCADE
+);
