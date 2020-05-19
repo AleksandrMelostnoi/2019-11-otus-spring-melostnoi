@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      database: homework08
+      host: localhost
+      port: 27018
+
+logging:
+  level:
+    root: error
