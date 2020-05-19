@@ -95,4 +95,18 @@ public class ShellService {
         ioService.write(bookService.getBooksByAuthorName(ioService.read()));
     }
 
+    @ShellMethod(key = {"geta_b"}, value = "get authors by book id")
+    public void getAuthorsByBookId() throws EmptyFieldException {
+        authorService.findAuthorsByBookId(ioService.read()).forEach(ioService::write);
+    }
+
+    @ShellMethod(key = {"dela_in_book"}, value = "delete author in book")
+    public void deleteAuthorInBook() throws EmptyFieldException {
+        ioService.write("Enter Book Id");
+        String bookId = ioService.read();
+        ioService.write("Enter Author Id");
+        String authorId = ioService.read();
+        bookService.deleteAuthor(bookId, authorId);
+    }
+
 }

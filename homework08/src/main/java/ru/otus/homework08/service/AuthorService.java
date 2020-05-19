@@ -4,12 +4,14 @@ import ru.otus.homework08.entity.Author;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface AuthorService {
 
     Optional<Author> findByName(String authorName);
     List<Author> findAll();
-    void saveAuthor(String name);
+    Author saveAuthor(String name);
     void deleteById(String id);
+    Set<Author> findAuthorsByBookId(String bookId);
 
 }

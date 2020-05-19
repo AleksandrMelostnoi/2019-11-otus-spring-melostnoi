@@ -3,4 +3,4 @@ Spring:
     mongodb:
       database: homework08test
       host: localhost
-      port: 27017
+      port: 0

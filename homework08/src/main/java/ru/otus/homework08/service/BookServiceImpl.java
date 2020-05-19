@@ -3,6 +3,7 @@ package ru.otus.homework08.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import ru.otus.homework08.Exception.AuthorNotFoundException;
 import ru.otus.homework08.Exception.EmptyFieldException;
 import ru.otus.homework08.entity.Author;
@@ -12,7 +13,11 @@ import ru.otus.homework08.repository.BookRepository;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
+
+import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
 
 @Service
 @RequiredArgsConstructor
@@ -85,6 +90,32 @@ public class BookServiceImpl implements BookService {
         Author author = authorService.findByName(authorName)
                 .orElseThrow(() -> new AuthorNotFoundException(String.format("Author '%s' not found!", authorName)));
         return bookRepository.findAllByAuthorsContaining(author).stream().map(Book::toString).collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void deleteAuthor(String bookId, String authorId) {
+        Assert.notNull(authorId, "Author id is null !");
+        Book book = findById(bookId);
+        if (isNotEmpty(book.getAuthors())) {
+            Set<Author> processedAuthors = book.getAuthors().stream()
+                    .filter(author -> !Objects.equals(author.getId(), authorId))
+                    .collect(Collectors.toSet());
+            book.setAuthors(processedAuthors);
+            bookRepository.save(book);
+        }
+    }
+
+    @Override
+    @Transactional
+    public Book addGenre(String bookId, Genre genre) {
+        Book book = findById(bookId);
+        if (isNotEmpty(book.getGenres())) {
+            book.getGenres().add(genre);
+        } else {
+            book.setGenres(Set.of(genre));
+        }
+        return bookRepository.save(book);
     }
 
 }

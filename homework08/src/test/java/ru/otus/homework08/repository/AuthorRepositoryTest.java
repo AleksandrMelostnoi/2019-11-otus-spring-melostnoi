@@ -31,7 +31,7 @@ class AuthorRepositoryTest {
     private MongoTemplate mongoTemplate;
 
     @Test
-    void shouldReturnListAllAuthors() {
+    void shouldReturnListAllAuthorsTest() {
         List<Author> listExpected = mongoTemplate.findAll(Author.class);
         List<Author> listActual = authorRepository.findAll();
         assertThat(listActual)
