@@ -14,25 +14,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static ru.otus.homework08.changelog.Author.ALEKSANDR_PUSHKIN;
-import static ru.otus.homework08.changelog.Author.DMITRIY_KORTAVA;
-import static ru.otus.homework08.changelog.Author.EDUARD_BEZUGLOV;
-import static ru.otus.homework08.changelog.Author.GARRY_GARRISON;
-import static ru.otus.homework08.changelog.Author.ILF_PETROV;
-import static ru.otus.homework08.changelog.Author.IVAN_KRYLOV;
-import static ru.otus.homework08.changelog.Author.MIGHAIL_LERMONTOV;
-import static ru.otus.homework08.changelog.Author.MIKHAIL_BULGAKOV;
-import static ru.otus.homework08.changelog.Genre.DRAMA;
-import static ru.otus.homework08.changelog.Genre.FABLE;
-import static ru.otus.homework08.changelog.Genre.FANTASY;
-import static ru.otus.homework08.changelog.Genre.HUMOR;
-import static ru.otus.homework08.changelog.Genre.LEARN_BOOK;
-import static ru.otus.homework08.changelog.Genre.REVIEW;
-import static ru.otus.homework08.changelog.Genre.RUSSIAN_CLASSIC;
-import static ru.otus.homework08.changelog.Genre.WORLD_CLASSIC;
-
 @ChangeLog(order = "001")
 public class DatabaseChangelog {
+
+    private String MIGHAIL_LERMONTOV = "Михаил Лермонтов";
+    private String IVAN_KRYLOV = "Иван Крылов";
+    private String ILF_PETROV = "Ильф и Петров";
+    private String MIKHAIL_BULGAKOV = "Михаил Булгаков";
+    private String ALEKSANDR_PUSHKIN = "Александр Пушкин";
+    private String GARRY_GARRISON = "Гарри Гаррисон";
+    private String EDUARD_BEZUGLOV = "Эдуард Безуглов";
+    private String DMITRIY_KORTAVA = "Дмитрий Кортава";
+
+    private String FABLE = "Басня";
+    private String HUMOR = "Юмор";
+    private String FANTASY = "Фантастика";
+    private String RUSSIAN_CLASSIC = "Русская классика";
+    private String WORLD_CLASSIC = "Мировая классика";
+    private String DRAMA = "Драма";
+    private String LEARN_BOOK = "Учебная литература";
+    private String REVIEW = "Документальное обозрение";
 
     private Map<String, Author> authors = new HashMap<>();
     private Map<String, Genre> genres = new HashMap<>();

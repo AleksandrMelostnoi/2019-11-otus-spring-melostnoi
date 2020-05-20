@@ -88,7 +88,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<String> getBooksByAuthorName(String authorName) throws AuthorNotFoundException {
         Author author = authorService.findByName(authorName)
-                .orElseThrow(() -> new AuthorNotFoundException(String.format("Author '%s' not found!", authorName)));
+                .orElseThrow(() -> new AuthorNotFoundException(authorName));
         return bookRepository.findAllByAuthorsContaining(author).stream().map(Book::toString).collect(Collectors.toList());
     }
 
